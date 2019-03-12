@@ -1,19 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<#include "layout/header.ftl">
 
-    <title>Kotlin</title>
-</head>
-<body>
-<h1>${article.title}</h1>
-<h1>${article.text}</h1>
-<#list comments as comment>
-    <p>${comment.text}</p>
-</#list>
-<form action="/articles/${article.id}/postComment" method="post">
-    <input type="text" name="text">
-    <input type="submit" value="Commenter">
-</form>
-</body>
-</html>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">${article.title}</h5>
+        <p class="card-text">${article.text}</p>
+    </div>
+    <hr>
+    <div class="card-body">
+        <h5>Commentaires</h5>
+        <#list comments?reverse as comment>
+            <p>${comment.text}</p>
+            <hr>
+        </#list>
+        <div class="container">
+            <form action="/article/${article.id}/createComment" method="post">
+                <div class="form-group row">
+                    <input type="text" class="form-control col-md-10" name="comment" placeholder="Je commente" required>
+                    <button type="submit" class="btn btn-success col-md-2">Commenter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<#include "layout/footer.ftl">

@@ -1,8 +1,7 @@
-package fr.iim.iwm.a5.kotlin
+package fr.iim.iwm.a5.kotlin.Models
 
 import java.sql.Connection
 import java.sql.DriverManager
-import java.util.concurrent.ConcurrentLinkedDeque
 import java.util.concurrent.ConcurrentLinkedQueue
 
 class ConnectionPool(val url: String, val user: String?, val password: String?) {

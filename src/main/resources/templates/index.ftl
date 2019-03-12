@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<#include "layout/header.ftl">
 
-    <title>CMS</title>
-</head>
-<body>
-
-<#list articles as article>
-    <p><a href="/articles/${article.id}">${article.title}</a></p>
+<h1>Liste des articles</h1>
+<#list articles?reverse as article>
+    <div class="col-sm-6">
+        <a href="/article/${article.id}" style="color: black; text-decoration-color: black;">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${article.title}</h5>
+                </div>
+            </div>
+        </a>
+    </div>
 </#list>
 
-</body>
-</html>
+<#include "layout/footer.ftl">
