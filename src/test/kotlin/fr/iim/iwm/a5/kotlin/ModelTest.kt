@@ -28,6 +28,26 @@ class ModelTest {
                 stmt.execute()
             }
         }
+
+        model.connectionPool.use { connection ->
+            connection.prepareStatement("""
+                DROP TABLE IF EXISTS `comments`;
+                CREATE TABLE `comments` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `article_id` int(11) NOT NULL,
+                  `text` text NOT NULL,
+                  PRIMARY KEY (`id`),
+                  CONSTRAINT comments_article_id_foreign FOREIGN KEY (`article_id`) REFERENCES articles(id) ON DELETE CASCADE
+                );
+                INSERT INTO `comments` VALUES
+                  (1, 1, 'Commentaire 1.1'),
+                  (2, 1, 'Commentaire 1.2'),
+                  (3, 2, 'Commentaire 2.1'),
+                  (4, 2, 'Commentaire 2.2')
+            """).use { stmt ->
+                stmt.execute()
+            }
+        }
     }
 
     @Test

@@ -20,7 +20,15 @@ class ArticleController(private val model: Model) {
         model.createArticle(title, text)
     }
 
+    fun deleteArticle(id: Int) {
+        model.deleteArticle(id)
+    }
+
     fun createComment(articleId: Int, comment: String) {
         model.createComment(articleId, comment)
+    }
+
+    fun deleteComment(id: Int) {
+        model.deleteComment(id)
     }
 }

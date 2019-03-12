@@ -64,11 +64,29 @@ fun main() {
                 call.respondRedirect("/")
             }
 
-            post("/article/{id}/createComment") {
+            get("article/{id}/delete") {
+                val id = call.parameters["id"] !! . toInt()
+
+                articleController.deleteArticle(id)
+
+                call.respondRedirect("/")
+            }
+
+            // COMMENTS
+            post("/article/{id}/comment/create") {
                 val articleId = call.parameters["id"] !! . toInt()
                 val comment = call.receive<Parameters>()["comment"] !!
 
                 articleController.createComment(articleId, comment)
+
+                call.respondRedirect("/article/$articleId")
+            }
+
+            get("/article/{articleId}/comment/{id}/delete") {
+                val articleId = call.parameters["articleId"] !! . toInt()
+                val id = call.parameters["id"] !! . toInt()
+
+                articleController.deleteComment(id)
 
                 call.respondRedirect("/article/$articleId")
             }

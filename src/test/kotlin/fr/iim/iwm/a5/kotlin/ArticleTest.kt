@@ -5,6 +5,7 @@ import com.nhaarman.mockitokotlin2.mock
 import fr.iim.iwm.a5.kotlin.Controllers.ArticleController
 import fr.iim.iwm.a5.kotlin.Models.*
 import io.ktor.freemarker.FreeMarkerContent
+import fr.iim.iwm.a5.kotlin.Models.SessionProvider
 import io.ktor.http.HttpStatusCode
 import org.junit.Test
 import kotlin.test.assertEquals
@@ -26,9 +27,15 @@ class FakeModel : Model {
             null
     }
 
+    override fun createArticle(title: String, text: String) = TODO()
+
+    override fun deleteArticle(id: Int) = TODO()
+
     override fun getArticleComments(id: Int): List<Comment> = TODO()
 
     override fun createComment(articleId: Int, comment: String) = TODO()
+
+    override fun deleteComment(id: Int) = TODO()
 
     override fun getUser(username: String?): User? = TODO()
 }

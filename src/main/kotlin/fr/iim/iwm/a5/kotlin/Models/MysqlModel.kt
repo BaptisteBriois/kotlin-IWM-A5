@@ -61,6 +61,17 @@ class MysqlModel(url: String, user: String?, password: String?) : Model {
         }
     }
 
+    // Delete article
+    override fun deleteArticle(id: Int) {
+        connectionPool.use { connection ->
+
+            connection.prepareStatement("DELETE FROM articles WHERE id = ?").use { stmt ->
+                stmt.setInt(1, id)
+                stmt.executeUpdate()
+            }
+        }
+    }
+
     // Get selected article comments
     override fun getArticleComments(id: Int): List<Comment> {
         val comments = ArrayList<Comment>()
@@ -92,6 +103,17 @@ class MysqlModel(url: String, user: String?, password: String?) : Model {
             connection.prepareStatement("INSERT INTO comments VALUES (NULL, ?, ?)").use { stmt ->
                 stmt.setInt(1, articleId)
                 stmt.setString(2, comment)
+                stmt.executeUpdate()
+            }
+        }
+    }
+
+    // Delete comment
+    override fun deleteComment(id: Int) {
+        connectionPool.use { connection ->
+
+            connection.prepareStatement("DELETE FROM comments WHERE id = ?").use { stmt ->
+                stmt.setInt(1, id)
                 stmt.executeUpdate()
             }
         }
