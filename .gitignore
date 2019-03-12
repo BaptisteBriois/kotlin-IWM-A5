@@ -10,7 +10,6 @@
 /ideaSDK
 /clionSDK
 /android-studio/sdk
-out/
 /tmp
 workspace.xml
 *.versionsBackup
@@ -22,8 +21,6 @@ workspace.xml
 /ultimate/tmp
 /js/js.translator/testData/out/
 /js/js.translator/testData/out-min/
-.gradle/
-build/
 !**/src/**/build
 !**/test/**/build
 *.iml
